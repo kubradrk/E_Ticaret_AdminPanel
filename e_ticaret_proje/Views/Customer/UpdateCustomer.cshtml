@@ -1,0 +1,27 @@
+﻿@model e_ticaret_proje.Models.Customer
+
+@{
+    ViewData["Title"] = "Müşteri Güncelleme";
+}
+<h2>Müşteri Güncelleme Sayfası</h2>
+
+<form method="post">
+    @Html.Label("Müşteri ID")
+    @Html.TextBoxFor(m => m.CustomerID, new { @class = "form-control", @readonly = "readonly" })
+
+    @Html.Label("Ad")
+    @Html.TextBoxFor(m => m.Name, new { @class = "form-control"})
+    <br />
+    @Html.Label("Email")
+    @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+    <br />
+    @Html.Label("Telefon")
+    @Html.TextBoxFor(m => m.Phone, new { @class = "form-control" })
+    <br />
+    @Html.Label("Şehir")
+    @Html.TextBoxFor(m => m.City, new { @class = "form-control" })
+    <br />
+    <button class="btn btn-sm btn-outline-primary">Güncelle</button>
+
+
+</form>

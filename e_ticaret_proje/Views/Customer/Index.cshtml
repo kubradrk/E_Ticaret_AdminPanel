@@ -1,0 +1,35 @@
+﻿@using e_ticaret_proje.Models
+@model List<Customer>
+
+
+<h2>Müşteriler Listesi</h2>
+
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>num</th>
+            <th>Müşteri Adı</th>
+            <th>Email</th>
+            <th>Şehir</th>
+            <th>Numara</th>
+            <th>İşlemler</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.CustomerID</td>
+                <td>@item.Name</td>
+                <td>@item.Email</td>
+                <td>@item.City</td>
+                <td>@item.Phone</td>
+                <td>
+                    <a href="/Customer/UpdateCustomer/@item.CustomerID" class="btn btn-sm btn btn-warning">Güncelle</a>
+                    <a href="/Customer/DeleteCustomer/@item.CustomerID" class="btn btn-sm btn btn-danger">Sil</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<a href="/Customer/AddCustomer/" class="btn btn-sm btn-success">Yeni Müşteri Ekle</a>
