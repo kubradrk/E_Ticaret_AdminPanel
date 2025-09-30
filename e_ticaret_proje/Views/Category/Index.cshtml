@@ -1,0 +1,32 @@
+﻿@using e_ticaret_proje.Models
+@model List<Category>
+
+@{
+    ViewData["Title"] = "Kategoriler";
+}
+
+<h2>Kategoriler Listesi</h2>
+
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>Kategori ID</th>
+            <th>Kategori Adı</th>
+            <th>İşlemler</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var item in Model)
+        {
+            <tr>
+                <td>@item.CategoryID</td>
+                <td>@item.Name</td>
+                <td>
+                    <a href="/Category/UpdateCategory/@item.CategoryID" class="btn btn-sm btn-warning">Güncelle</a>
+                    <a href="/Category/DeleteCategory/@item.CategoryID" class="btn btn-sm btn-danger">Sil</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<a href="/Category/AddCategory/"class="btn btn-sm btn-success">Yeni Kategori Ekle</a>

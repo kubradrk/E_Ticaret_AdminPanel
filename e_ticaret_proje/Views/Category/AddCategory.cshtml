@@ -1,0 +1,18 @@
+﻿@model e_ticaret_proje.Models.Category
+
+@{
+    ViewData["Title"] = "Yeni Kategori Ekleme";
+}
+
+<h2>Yeni Kategori Ekleme</h2>
+
+
+<form method="post">
+
+    <br/>
+    @Html.Label("Kategori Adı: ")
+    @Html.TextBoxFor(m => m.Name, new { @class = "form-control"})
+    <br/>
+
+    <button class="btn btn-sm btn-outline-primary">Ekle</button>
+</form>
