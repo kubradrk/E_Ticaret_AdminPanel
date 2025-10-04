@@ -5,6 +5,9 @@
 <h2>Ürün Ekleme Sayfası</h2>
 
 <form method="post">
+    @Html.Label("Kategori: ")
+    @Html.DropDownListFor(x => x.CategoryID, (IEnumerable<SelectListItem>)ViewBag.Categories, "Kategori Seçiniz", new { @class = "form-control" })
+    <br />
     @Html.Label("Ürün Adı: ")
     @Html.TextBoxFor(x => x.Name,new{@class="form-control"})
     <br />

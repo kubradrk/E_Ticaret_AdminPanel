@@ -1,5 +1,7 @@
 ﻿using e_ticaret_proje.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 
 namespace e_ticaret_proje.Controllers
 {
@@ -8,12 +10,13 @@ namespace e_ticaret_proje.Controllers
         Context context = new Context();
         public IActionResult Index()
         {
-            var values = context.Products.ToList();
+            var values = context.Products.Include(x => x.Category).ToList();
             return View(values);
         }
         [HttpGet]
         public IActionResult AddProduct()
         {
+            ViewBag.Categories = new SelectList(context.Categories.ToList(), "CategoryID", "Name");
             return View();
         }
         [HttpPost]

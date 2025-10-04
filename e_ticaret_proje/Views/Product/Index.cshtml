@@ -1,11 +1,16 @@
 ﻿@using e_ticaret_proje.Models
 @model List<Product>
 
+@{
+    ViewData["Title"] = "Ürünler Listesi";
+}
+
 <h2>Ürünler Listesi</h2>
 <table class="table table-bordered table-hover">
     <thead>
         <tr>
            <th>Num</th>
+           <th>Kategori</th>
            <th>Ürün Adı</th>
            <th>Fiyat</th>
            <th>Stok</th>
@@ -17,6 +22,7 @@
         {
             <tr>
                 <td>@item.ProductID</td>
+                <th>@item.Category?.Name</th>
                 <td>@item.Name</td>
                 <td>@item.Price</td>
                 <td>@item.Stock</td>

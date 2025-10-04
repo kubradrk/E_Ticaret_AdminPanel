@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using e_ticaret_proje.Models;
 
@@ -11,9 +12,11 @@ using e_ticaret_proje.Models;
 namespace e_ticaret_proje.Migrations
 {
     [DbContext(typeof(Context))]
-    partial class ContextModelSnapshot : ModelSnapshot
+    [Migration("20250930230348_AddOrderTable")]
+    partial class AddOrderTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -82,9 +85,6 @@ namespace e_ticaret_proje.Migrations
                     b.Property<DateTime>("OrderDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("OrderStatusID")
-                        .HasColumnType("int");
-
                     b.Property<int>("ProductID")
                         .HasColumnType("int");
 
@@ -95,28 +95,9 @@ namespace e_ticaret_proje.Migrations
 
                     b.HasIndex("CustomerID");
 
-                    b.HasIndex("OrderStatusID");
-
                     b.HasIndex("ProductID");
 
                     b.ToTable("Orders");
-                });
-
-            modelBuilder.Entity("e_ticaret_proje.Models.OrderStatus", b =>
-                {
-                    b.Property<int>("OrderStatusID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("OrderStatusID"));
-
-                    b.Property<string>("StatusName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("OrderStatusID");
-
-                    b.ToTable("OrderStatuses");
                 });
 
             modelBuilder.Entity("e_ticaret_proje.Models.Product", b =>
@@ -155,12 +136,6 @@ namespace e_ticaret_proje.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("e_ticaret_proje.Models.OrderStatus", "OrderStatus")
-                        .WithMany("Orders")
-                        .HasForeignKey("OrderStatusID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("e_ticaret_proje.Models.Product", "Product")
                         .WithMany("Orders")
                         .HasForeignKey("ProductID")
@@ -168,8 +143,6 @@ namespace e_ticaret_proje.Migrations
                         .IsRequired();
 
                     b.Navigation("Customer");
-
-                    b.Navigation("OrderStatus");
 
                     b.Navigation("Product");
                 });
@@ -191,11 +164,6 @@ namespace e_ticaret_proje.Migrations
                 });
 
             modelBuilder.Entity("e_ticaret_proje.Models.Customer", b =>
-                {
-                    b.Navigation("Orders");
-                });
-
-            modelBuilder.Entity("e_ticaret_proje.Models.OrderStatus", b =>
                 {
                     b.Navigation("Orders");
                 });
