@@ -1,0 +1,50 @@
+﻿@using e_ticaret_proje.Models
+@model List<Order>
+
+@{
+    ViewData["Title"] = "Siparişler";
+}
+
+<h2>Siparişler Sayfası</h2>
+
+@if (TempData["ErrorMessage"] != null)
+{
+    <div class="alert alert-danger">
+        @TempData["ErrorMessage"]
+    </div>
+}
+
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>Sipariş ID</th>
+            <th>Müşteri Adı</th>
+            <th>Ürün Adı</th>
+            <th>Sipariş Tarihi</th>
+            <th>Ürün Miktarı</th>
+            <th>Ürün Fiyatı</th>
+            <th>Toplam Tutar</th>
+            <th>Durum</th>
+            <th>İşlemler</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.OrderID</td>
+                <td>@item.Customer.Name</td>
+                <td>@item.Product.Name</td>
+                <td>@item.OrderDate</td>
+                <td>@item.Quantity</td>
+                <td>@item.Product.Price</td>
+                <td>@(item.Product.Price * item.Quantity)</td>
+                <td>@item.OrderStatus.StatusName</td>
+                <td>
+                    <a href="/Order/UpdateOrder/@item.OrderID" class="btn btn-sm btn-warning">Güncelle</a>
+                    <a href="/Order/DeleteOrder/@item.OrderID" class="btn btn-sm btn-danger">Sil</a>
+                </td>
+            </tr>
+        }
+</table>
+<a href="/Order/AddOrder/" class="btn btn-sm btn-success">Yeni Sipariş Ekle</a>

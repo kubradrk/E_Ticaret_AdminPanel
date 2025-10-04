@@ -1,0 +1,44 @@
+﻿@model e_ticaret_proje.Models.Order
+
+@{
+    ViewData["Title"] = "Güncelleme Sayfası";
+}
+
+<h2>Sipariş Güncelleme Sayfası</h2>
+
+
+@if (ViewBag.Message != null)
+{
+    <div class="alert alert-info">@ViewBag.Message</div>
+}
+
+<form method="post">
+    @Html.Label("Sipariş ID")
+    @Html.TextBoxFor(m => m.OrderID, new { @class = "form-control", @readonly = "readonly" })
+    <br />
+
+    @Html.Label("Müşteri ID")
+    @Html.DropDownListFor(x => x.CustomerID, (SelectList)ViewBag.customers, "Müşteri Seç", new { @class = "form-control" })
+
+    <br/>
+
+    @Html.Label("Ürün Adı")
+    @Html.DropDownListFor(x => x.ProductID, (SelectList)ViewBag.products, "Ürün Seç", new { @class = "form-control" })
+
+    <br/>
+
+    @Html.Label("Sipariş Tarihi")
+    @Html.TextBoxFor(m => m.OrderDate, new { @class = "form-control" })
+    <br/>
+
+    @Html.Label("Ürün Miktarı")
+    @Html.TextBoxFor(m => m.Quantity, new { @class = "form-control" })
+    <br/>
+
+    @Html.Label("Durum")
+    @Html.DropDownListFor(x => x.OrderStatusID, (SelectList)ViewBag.statuses, "Durum Seç", new { @class = "form-control" })
+    <br/>
+
+    <button class="btn btn-sm btn-outline-primary">Güncelle</button>
+</form>
+
